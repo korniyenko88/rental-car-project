@@ -1,7 +1,22 @@
 .wraper {
   background-image: url('../../image/hero-img.jpg');
-    background-size: cover;
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   height: 100vh;
+}
+.btn {
+  border-radius: 12px;
+  padding: 12px 99px;
+  height: 44px;
+  background: #3470ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: #fff;
 }

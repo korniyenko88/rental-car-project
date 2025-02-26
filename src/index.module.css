@@ -4,24 +4,23 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0;
 }
 
 body {
   height: auto;
-   font-family: var(--font-family);
+  font-family: 'Manrope', sans-serif; 
 }
 
 .full-height {
   height: 100vh;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -44,7 +43,7 @@ button {
   border: none;
   cursor: pointer;
   font-family: inherit;
-  border: 1px;
+  border: 1px solid transparent;
 }
 
 img {
@@ -59,3 +58,16 @@ p {
   line-height: 1.5;
 }
 
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+
+@media (max-width: 1440px) {
+  .container {
+    padding: 0;
+  }
+}

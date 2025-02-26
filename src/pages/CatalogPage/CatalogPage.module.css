@@ -1,0 +1,69 @@
+.catalogContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.carList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.carItem {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 276px;
+  height: 424px;
+}
+
+.carItemImg {
+  border-radius: 14px;
+  width: 276px;
+  height: 268px;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 20, 23, 0.5) 0%,
+    rgba(18, 20, 23, 0.5) 100%
+  );
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+p {
+  margin: 4px 0;
+}
+.btn {
+  border-radius: 12px;
+  padding: 12px 99px;
+  height: 44px;
+  background: #3470ff;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 125%;
+  color: #fff;
+}
+.loadMoreBtn {
+  border: 1px solid #3470ff;
+  border-radius: 12px;
+  padding: 12px 51px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
+}

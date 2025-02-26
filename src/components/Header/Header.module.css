@@ -1,0 +1,45 @@
+.header {
+  width: 100%;
+  background: #f2f4f7;
+  padding: 24px 120px;
+  border-bottom: 1px solid #f2f4f7;
+  padding: 24px 120px;
+  width: 1440px;
+  height: 68px;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 960px;
+}
+.link {
+ color:  #101828;
+}
+.active {
+     font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+text-align: center;
+color: #0b44cd;
+
+}
+
+.logoIcon {
+  width: 104px;
+  height: 16px;
+}
+.btnList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 32px;
+}
+.btn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+  color: #101828;
+}
