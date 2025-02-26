@@ -1,43 +1,51 @@
-
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Manrope", sans-serif;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+body {
+  height: auto;
+   font-family: var(--font-family);
+}
+
+.full-height {
+  height: 100vh;
+}
+
 
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-}
-
-
-ul, ol {
+ul,
+ol {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 
 a {
   text-decoration: none;
   color: inherit;
 }
 
-
 button {
   background: none;
   border: none;
   cursor: pointer;
   font-family: inherit;
+  border: 1px;
 }
-
 
 img {
   display: block;
@@ -45,9 +53,9 @@ img {
   height: auto;
 }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
 }
+
