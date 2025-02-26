@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import sprite from '../../image/sprite.svg';
 import Loader from '../../components/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import styles from './CarDetailsPage.module.css';
@@ -51,55 +52,73 @@ const CarDetailsPage = () => {
           />
           <div className={styles.carDescription}>
             <h1>
-              {car.brand} {car.model}
+              {car.brand} {car.model}, {car.year}{' '}
+              <span>id: {car.id.slice(0, 4)}</span>
             </h1>
             <p>
-              <strong>Year:</strong> {car.year}
-            </p>
-            <p>
-              <strong>Rental Price:</strong> {car.rentalPrice}$
-            </p>
-            <p>
-              <strong>Rental Company:</strong> {car.rentalCompany}
-            </p>
-            <p>
-              <strong>Address:</strong> {car.address}
-            </p>
-            <p>
-              <strong>Type:</strong> {car.type}
-            </p>
-            <p>
-              <strong>Mileage:</strong> {car.mileage} km
-            </p>
-            <p>
-              <strong>Description:</strong> {car.description}
-            </p>
-            <p>
-              <strong>Fuel Consumption:</strong> {car.fuelConsumption} L/100km
-            </p>
-            <p>
-              <strong>Engine Size:</strong> {car.engineSize}
+              <svg className={styles.iconSvg} aria-hidden="true">
+                <use href={`${sprite}#icon-Location`} />
+              </svg>
+              {car.address.split(',').slice(1).join(',').trim()}
+              <span>Mileage: {car.mileage} km</span>
             </p>
 
-            <h3>Accessories:</h3>
+            <p>{car.rentalPrice}$</p>
+            <p>{car.description}</p>
+
+            <p>
+              <h3>Rental Conditions:</h3>
+              <ul>
+                {car.rentalConditions.map((condition, index) => (
+                  <li key={index}>
+                    <svg className={styles.iconSvg} aria-hidden="true">
+                      <use href={`${sprite}#icon-check-circle`} />
+                    </svg>
+                    {condition}
+                  </li>
+                ))}
+              </ul>
+            </p>
+
+            <h3>Car Specifications:</h3>
             <ul>
-              {car.accessories.map((accessory, index) => (
-                <li key={index}>{accessory}</li>
-              ))}
+              <li>
+                <svg className={styles.iconSvg} aria-hidden="true">
+                  <use href={`${sprite}#icon-calendar`} />
+                </svg>
+                Year: {car.year}
+              </li>
+              <li>
+                <svg className={styles.iconSvg} aria-hidden="true">
+                  <use href={`${sprite}#icon-car`} />
+                </svg>
+                Type: {car.type}
+              </li>
+              <li>
+                <svg className={styles.iconSvg} aria-hidden="true">
+                  <use href={`${sprite}#icon-fuel-pump`} />
+                </svg>
+                Fuel Consumption: {car.fuelConsumption}
+              </li>
+              <li>
+                <svg className={styles.iconSvg} aria-hidden="true">
+                  <use href={`${sprite}#icon-gear`} />
+                </svg>
+                Engine Size: {car.engineSize}
+              </li>
             </ul>
-
-            <h3>Functionalities:</h3>
+            <h3>Accessories and Functionalities:</h3>
             <ul>
-              {car.functionalities.map((functionality, index) => (
-                <li key={index}>{functionality}</li>
-              ))}
-            </ul>
-
-            <h3>Rental Conditions:</h3>
-            <ul>
-              {car.rentalConditions.map((condition, index) => (
-                <li key={index}>{condition}</li>
-              ))}
+              {car.accessories
+                .concat(car.functionalities)
+                .map((item, index) => (
+                  <li key={index}>
+                    <svg className={styles.iconSvg} aria-hidden="true">
+                      <use href={`${sprite}#icon-check-circle`} />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
             </ul>
           </div>
         </>
