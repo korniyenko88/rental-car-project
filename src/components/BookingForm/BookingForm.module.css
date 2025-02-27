@@ -7,7 +7,7 @@
   border-radius: 10px;
   padding: 32px;
   width: 640px;
-  top: 800px;
+  top: 710px;
 }
 .formLabel {
   padding-bottom: 24px;
@@ -15,8 +15,8 @@
 .formInputs {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 20px;
+ 
 }
 .input {
   border: none;

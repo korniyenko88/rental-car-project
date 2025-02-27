@@ -10,6 +10,7 @@
   height: 512px;
 }
 .carDescription {
+  height: 1020px;
   width: 488px;
 }
 
@@ -44,6 +45,7 @@
   margin-left: 16px;
 }
 .carPrice {
+  margin-top: 8px;
   font-weight: 600;
   font-size: 24px;
   line-height: 133%;

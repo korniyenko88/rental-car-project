@@ -1,9 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import validationSchema from '../../utils/validation'
+import validationSchema from '../../utils/validation';
 import styles from './BookingForm.module.css';
-
-
 
 const BookingForm = () => {
   return (
@@ -52,7 +50,6 @@ const BookingForm = () => {
                 />
               </div>
 
-              {/* Поле Booking Date */}
               <div className={styles.inputWrapper}>
                 <Field
                   name="bookingDate"
