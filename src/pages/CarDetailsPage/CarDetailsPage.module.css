@@ -10,10 +10,77 @@
   height: 512px;
 }
 .carDescription {
-
+  width: 488px;
 }
 
+.firstBlok {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  text-align: center;
+  color: #101828;
+}
+.titleId {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #8d929a;
+  margin-left: 16px;
+}
+.locationMiles {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
+}
+.milesPosition {
+  margin-left: 16px;
+}
+.carPrice {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: #3470ff;
+}
+.decrCar {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
+  margin-bottom: 68px;
+}
+.conditionTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: #101828;
+  margin-bottom: 20px;
+}
+.conditionList {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 110px;
+}
+.conditionalItem {
+  display: flex;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
+  align-items: center;
+}
 .iconSvg {
+  margin-right: 8px;
   width: 16px;
   height: 16px;
   opacity: 1;

@@ -53,25 +53,34 @@ const CarDetailsPage = () => {
               alt={`${car.brand} ${car.model}`}
             />
             <div className={styles.carDescription}>
-              <h1>
-                {car.brand} {car.model}, {car.year}{' '}
-                <span>id: {car.id.slice(0, 4)}</span>
-              </h1>
-              <p>
-                <svg className={styles.iconSvg} aria-hidden="true">
-                  <use href={`${sprite}#icon-Location`} />
-                </svg>
-                {car.address.split(',').slice(1).join(',').trim()}
-                <span>Mileage: {car.mileage} km</span>
-              </p>
+              <div className={styles.firstBlok}>
+                <h1 className={styles.title}>
+                  {car.brand} {car.model}, {car.year}{' '}
+                  <span className={styles.titleId}>
+                    id: {car.id.slice(0, 4)}
+                  </span>
+                </h1>
+                <span className={styles.locationMiles}>
+                  <p>
+                    <svg className={styles.iconSvg} aria-hidden="true">
+                      <use href={`${sprite}#icon-Location`} />
+                    </svg>
+                    {car.address.split(',').slice(1).join(',').trim()}
+                    <span className={styles.milesPosition}>
+                      {' '}
+                      Mileage: {car.mileage.toLocaleString('ru-RU')} km
+                    </span>
+                  </p>
+                </span>
+                <p className={styles.carPrice}>${car.rentalPrice}</p>
+              </div>
 
-              <p>{car.rentalPrice}$</p>
-              <p>{car.description}</p>
+              <p className={styles.decrCar}>{car.description}</p>
 
-              <h3>Rental Conditions:</h3>
-              <ul>
+              <h3 className={styles.conditionTitle}>Rental Conditions:</h3>
+              <ul className={styles.conditionList}>
                 {car.rentalConditions.map((condition, index) => (
-                  <li key={index}>
+                  <li className={styles.conditionalItem} key={index}>
                     <svg className={styles.iconSvg} aria-hidden="true">
                       <use href={`${sprite}#icon-check-circle`} />
                     </svg>
@@ -80,39 +89,41 @@ const CarDetailsPage = () => {
                 ))}
               </ul>
 
-              <h3>Car Specifications:</h3>
-              <ul>
-                <li>
+              <h3 className={styles.conditionTitle}>Car Specifications:</h3>
+              <ul className={styles.conditionList}>
+                <li className={styles.conditionalItem}>
                   <svg className={styles.iconSvg} aria-hidden="true">
                     <use href={`${sprite}#icon-calendar`} />
                   </svg>
                   Year: {car.year}
                 </li>
-                <li>
+                <li className={styles.conditionalItem}>
                   <svg className={styles.iconSvg} aria-hidden="true">
                     <use href={`${sprite}#icon-car`} />
                   </svg>
                   Type: {car.type}
                 </li>
-                <li>
+                <li className={styles.conditionalItem}>
                   <svg className={styles.iconSvg} aria-hidden="true">
                     <use href={`${sprite}#icon-fuel-pump`} />
                   </svg>
                   Fuel Consumption: {car.fuelConsumption}
                 </li>
-                <li>
+                <li className={styles.conditionalItem}>
                   <svg className={styles.iconSvg} aria-hidden="true">
                     <use href={`${sprite}#icon-gear`} />
                   </svg>
                   Engine Size: {car.engineSize}
                 </li>
               </ul>
-              <h3>Accessories and Functionalities:</h3>
-              <ul>
+              <h3 className={styles.conditionTitle}>
+                Accessories and Functionalities:
+              </h3>
+              <ul className={styles.conditionList}>
                 {car.accessories
                   .concat(car.functionalities)
                   .map((item, index) => (
-                    <li key={index}>
+                    <li className={styles.conditionalItem} key={index}>
                       <svg className={styles.iconSvg} aria-hidden="true">
                         <use href={`${sprite}#icon-check-circle`} />
                       </svg>
@@ -121,10 +132,10 @@ const CarDetailsPage = () => {
                   ))}
               </ul>
             </div>
+            <BookingForm />
           </>
         )}
       </div>
-      <BookingForm />
     </div>
   );
 };
