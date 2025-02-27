@@ -51,6 +51,10 @@ p {
   font-size: 15px;
   line-height: 125%;
   color: #fff;
+  transition: background 0.3s ease-in-out;
+}
+.btn:hover {
+  background: #0b44cd;
 }
 .loadMoreBtn {
   border: 1px solid #3470ff;
@@ -66,4 +70,9 @@ p {
   font-size: 16px;
   line-height: 125%;
   color: #101828;
+  transition: background 0.3s ease-in-out;
+}
+
+.loadMoreBtn:hover {
+  border: 1px solid #0b44cd;
 }
