@@ -16,8 +16,8 @@ export const validationSchema = Yup.object({
 
 
  export const FilterValidationSchema = Yup.object({
-   brand: Yup.string().required('Required'),
-   price: Yup.string().required('Required'),
+   brand: Yup.string(),
+   price: Yup.string(),
    mileageFrom: Yup.number().optional().min(0, 'Must be at least 0'),
    mileageTo: Yup.number()
      .optional()

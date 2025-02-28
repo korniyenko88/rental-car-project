@@ -12,23 +12,47 @@ const CatalogPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
+  const [filter, setFilter] = useState({});
 
   const navigate = useNavigate();
+
+  const hendeleFilter = newFilter => {
+    setCars(newFilter.cars);
+    setTotalPages(newFilter.totalPages);
+    setPage(1);
+    console.log('NEW FILTER', newFilter.cars);
+    
+  };
   
 
   useEffect(() => {
     const fetchCars = async () => {
+      setLoading(true);
       try {
+        const params = {
+          page,
+          limit,
+          ...filter,
+        };
         const response = await axios.get(
-          `https://car-rental-api.goit.global/cars?page=${page}&limit=${limit}`
+          `https://car-rental-api.goit.global/cars`,
+          { params }
         );
         const newCars = response.data.cars;
+        console.log('First response', response.data.cars);
 
-        const uniqueCars = [
-          ...new Map([...cars, ...newCars].map(car => [car.id, car])).values(),
-        ];
+        if (page === 1) {
+          setCars(newCars);
+        } else {
+          const uniqueCars = [
+            ...new Map(
+              [...cars, ...newCars].map(car => [car.id, car])
+            ).values(),
+          ];
 
-        setCars(uniqueCars);
+          setCars(uniqueCars);
+        }
+
         setTotalPages(response.data.totalPages);
       } catch (error) {
         setError(
@@ -40,7 +64,7 @@ const CatalogPage = () => {
     };
 
     fetchCars();
-  }, [page, limit]);
+  }, [page, limit, filter]);
 
   const loadMoreCars = () => {
     if (page < totalPages) {
@@ -67,7 +91,7 @@ const CatalogPage = () => {
   return (
     <div className={styles.catalogContainer}>
       <div>
-        <CarFilterForm />
+        <CarFilterForm onFilter={hendeleFilter} />
       </div>
       <div className={styles.carList}>
         {cars.map(car => (

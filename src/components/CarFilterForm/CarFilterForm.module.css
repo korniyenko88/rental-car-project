@@ -45,8 +45,12 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 125%;
-  color: #101828;
+  
   padding-left: 24px;
+}
+.formInput::placeholder {
+  color: #101828;
+  
 }
 
 .formInputSecond {
@@ -61,6 +65,10 @@
   color: #101828;
   border-radius: 0 12px 12px 0;
   padding-left: 24px;
+}
+.formInputSecond::placeholder {
+  color: #101828;
+  
 }
 
 .filterBtn {

@@ -4,6 +4,7 @@ import { FilterInitialValues } from '../../utils/validation';
 import styles from './CarFilterForm.module.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
+import Loader from '../Loader/Loader';
 
 const CarFilterForm = ({ onFilter }) => {
   const [brands, setBrands] = useState([]);
@@ -11,9 +12,39 @@ const CarFilterForm = ({ onFilter }) => {
   const [loading, setLoading] = useState(true);
 
   const handleSubmit = async values => {
+    console.log('Form values:', values);
     try {
-      const response = await axios.get('/api/vehicles', { params: values });
+      const filteredValues = Object.fromEntries(
+        Object.entries(values).filter(
+          ([_, value]) => value !== '' && value !== null
+        )
+      );
+      console.log('Фільтруємо дані перед запитом:', filteredValues);
+      if (Object.keys(filteredValues).length === 0) {
+        alert('All fields are empty! The request will not be sent!');
+        return; 
+      }
+
+      const params = {
+        ...(filteredValues.brand && { brand: String(filteredValues.brand) }),
+        ...(filteredValues.mileageFrom && {
+          mileageFrom: String(filteredValues.mileageFrom),
+        }),
+        ...(filteredValues.mileageTo && {
+          mileageTo: String(filteredValues.mileageTo),
+        }),
+        ...(filteredValues.price && { price: String(filteredValues.price) }),
+      };
+
+      console.log('Фільтруємо дані перед запитом:', params);
+
+      const response = await axios.get(
+        `https://car-rental-api.goit.global/cars`,
+        { params }
+      );
+      console.log('Отримані авто:', response.data);
       onFilter(response.data);
+      
     } catch (error) {
       console.error('Error fetching vehicles:', error);
     }
@@ -42,7 +73,7 @@ const CarFilterForm = ({ onFilter }) => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
@@ -90,7 +121,7 @@ const CarFilterForm = ({ onFilter }) => {
 
           <div className={styles.formGroup}>
             <label htmlFor="mileageFrom">Car Mileage / km</label>
-            <div className={styles.mileageFields}>
+            <div>
               <Field
                 className={styles.formInput}
                 name="mileageFrom"
