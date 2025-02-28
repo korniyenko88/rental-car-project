@@ -87,3 +87,8 @@
   height: 16px;
   opacity: 1;
 }
+.loaderPosition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

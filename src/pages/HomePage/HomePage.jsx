@@ -9,9 +9,13 @@ const HomePage = () => {
   }
   return (
     <div className={styles.wraper}>
-      <h1>Find your perfect rental car</h1>
-      <p>Reliable and budget-friendly rentals for any journey</p>
-      <button className={styles.btn} onClick={handleNavigate}>Vive catalog</button>
+      <div className={styles.title}>
+        <h1 className={styles.titleText}>Find your perfect rental car</h1>
+        <p className={styles.text}>Reliable and budget-friendly rentals for any journey</p>
+        <button className={styles.btn} onClick={handleNavigate}>
+          Vive catalog
+        </button>
+      </div>
     </div>
   );
 };

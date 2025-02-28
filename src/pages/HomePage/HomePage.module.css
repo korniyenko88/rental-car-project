@@ -1,4 +1,7 @@
 .wraper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   background-image: url('../../image/hero-img.jpg');
   background-size: cover;
   background-position: center;
@@ -19,4 +22,26 @@
   font-size: 16px;
   line-height: 125%;
   color: #fff;
+  margin-bottom: 60px;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.titleText {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 120%;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.text {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
 }

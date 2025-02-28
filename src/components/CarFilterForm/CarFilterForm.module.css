@@ -1,0 +1,94 @@
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 84px;
+  margin-bottom: 56px;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8d929a;
+}
+
+.formSelect {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 204px;
+  height: 44px;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 32px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
+}
+
+.formInput {
+  border: none;
+  border-right: 1px solid #dadde1;
+  border-radius: 12px 0 0 12px;
+  width: 160px;
+  height: 44px;
+  background: #f7f7f7;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
+  padding-left: 24px;
+}
+
+.formInputSecond {
+  border: none;
+  border-radius: 12px 0 0 12px;
+  width: 160px;
+  height: 44px;
+  background: #f7f7f7;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
+  border-radius: 0 12px 12px 0;
+  padding-left: 24px;
+}
+
+.filterBtn {
+    display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+gap: 0px;
+border-radius: 12px;
+padding: 12px 51px;
+width: 156px;
+height: 44px;
+background: #3470ff;
+ transition: background 0.3s ease-in-out;
+ font-weight: 600;
+font-size: 16px;
+line-height: 125%;
+color: #fff;
+}
+.filterBtn :hover {
+  background: #0b44cd;
+}
+
+.positionBtn {
+   margin-top: 20px;
+}
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}

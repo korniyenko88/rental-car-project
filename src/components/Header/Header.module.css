@@ -12,7 +12,9 @@
   justify-content: flex-start;
   flex-direction: row;
   gap: 960px;
+  margin-bottom: 4px;
 }
+
 .link {
  color:  #101828;
 }

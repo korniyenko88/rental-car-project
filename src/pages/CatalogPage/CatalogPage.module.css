@@ -1,15 +1,22 @@
 .catalogContainer {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
   flex-direction: column;
-  gap: 48px;
+  
+  
+}
+.loaderPosition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .carList {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 80px;
 }
 
 .carItem {
@@ -17,7 +24,6 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
   padding: 0;
   width: 276px;
   height: 424px;
@@ -32,25 +38,59 @@
     rgba(18, 20, 23, 0.5) 0%,
     rgba(18, 20, 23, 0.5) 100%
   );
+  margin-bottom: 16px;
 }
 
-h2 {
-  font-size: 1.5rem;
+.cartTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #101828;
   margin-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.moderlName {
+  color: #3470ff;
 }
 
-p {
-  margin: 4px 0;
+.cardText {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8d929a;
+}
+.cartDescription {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.infoPosition {
+  gap: 6px;
+  flex-basis: 100%;
+  display: flex;
 }
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0px;
   border-radius: 12px;
   padding: 12px 99px;
+  width: 276px;
   height: 44px;
   background: #3470ff;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 125%;
   color: #fff;
+  white-space: nowrap;
   transition: background 0.3s ease-in-out;
 }
 .btn:hover {
@@ -71,6 +111,7 @@ p {
   line-height: 125%;
   color: #101828;
   transition: background 0.3s ease-in-out;
+  margin-bottom: 124px;
 }
 
 .loadMoreBtn:hover {

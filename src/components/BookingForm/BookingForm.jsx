@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import validationSchema from '../../utils/validation';
+import {validationSchema} from '../../utils/validation';
 import styles from './BookingForm.module.css';
 
 const BookingForm = () => {
@@ -10,7 +10,6 @@ const BookingForm = () => {
         initialValues={{ name: '', email: '', bookingDate: '', comment: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-          console.log('Форма відправлена:', values);
           resetForm();
         }}
       >
@@ -103,83 +102,3 @@ const BookingForm = () => {
 };
 
 export default BookingForm;
-
-// import React, { useState } from 'react';
-// import styles from './Form.module.css';
-
-// const Form = () => {
-//   const [name, setName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [bookingDate, setBookingDate] = useState('');
-//   const [comment, setComment] = useState('');
-
-//   const handleSubmit = event => {
-//     event.preventDefault();
-//     console.log(`Форма відправлена:
-//       Ім'я: ${name}
-//       Email: ${email}
-//       Дата бронювання: ${bookingDate}
-//       Коментар: ${comment}
-//     `);
-//   };
-
-//   return (
-//     <div className={styles.form}>
-//       <form onSubmit={handleSubmit}>
-//         <div className={styles.formLabel}>
-//           <h2 className={styles.formTitle}>Book your car now</h2>
-//           <p className={styles.formText}>
-//             Stay connected! We are always ready to help you.
-//           </p>
-//         </div>
-//         <div className={styles.formInputs}>
-//           <div>
-//             <input
-//               className={styles.input}
-//               placeholder="Name*"
-//               type="text"
-//               value={name}
-//               onChange={event => setName(event.target.value)}
-//             />
-//           </div>
-//           <div>
-//             <input
-//               className={styles.input}
-//               placeholder="Email*"
-//               type="email"
-//               value={email}
-//               onChange={event => setEmail(event.target.value)}
-//             />
-//           </div>
-
-//           <div className={styles.inputWrapper}>
-//             <label htmlFor="bookingDate" className={styles.label}>
-//               Booking date
-//             </label>
-//             <input
-//               name="bookingDate"
-//               className={styles.input}
-//               type="date"
-//               value={bookingDate}
-//               onChange={event => setBookingDate(event.target.value)}
-//             />
-//           </div>
-
-//           <div>
-//             <textarea
-//               className={styles.inputComent}
-//               placeholder="Comment"
-//               value={comment}
-//               onChange={event => setComment(event.target.value)}
-//             />
-//           </div>
-//           <button className={styles.formBtn} type="submit">
-//             Send
-//           </button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Form;
