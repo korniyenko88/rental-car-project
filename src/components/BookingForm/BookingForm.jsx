@@ -1,16 +1,20 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import {validationSchema} from '../../utils/validation';
+import { validationSchema } from '../../utils/validation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './BookingForm.module.css';
 
 const BookingForm = () => {
   return (
     <div className={styles.form}>
+      <ToastContainer autoClose={3000} />
       <Formik
         initialValues={{ name: '', email: '', bookingDate: '', comment: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           resetForm();
+          toast.success(`Hello ${values.name}! Your car has been booked!`);
         }}
       >
         {({ setFieldValue, values }) => (

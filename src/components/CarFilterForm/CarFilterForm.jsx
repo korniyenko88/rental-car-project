@@ -11,7 +11,7 @@ const CarFilterForm = ({ onFilter }) => {
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values, { resetForm }) => {
     console.log('Form values:', values);
     try {
       const filteredValues = Object.fromEntries(
@@ -22,7 +22,7 @@ const CarFilterForm = ({ onFilter }) => {
       console.log('Фільтруємо дані перед запитом:', filteredValues);
       if (Object.keys(filteredValues).length === 0) {
         alert('All fields are empty! The request will not be sent!');
-        return; 
+        return;
       }
 
       const params = {
@@ -44,7 +44,7 @@ const CarFilterForm = ({ onFilter }) => {
       );
       console.log('Отримані авто:', response.data);
       onFilter(response.data);
-      
+      resetForm();
     } catch (error) {
       console.error('Error fetching vehicles:', error);
     }

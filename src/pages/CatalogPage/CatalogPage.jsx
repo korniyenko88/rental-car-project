@@ -21,9 +21,7 @@ const CatalogPage = () => {
     setTotalPages(newFilter.totalPages);
     setPage(1);
     console.log('NEW FILTER', newFilter.cars);
-    
   };
-  
 
   useEffect(() => {
     const fetchCars = async () => {
