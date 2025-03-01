@@ -8,7 +8,7 @@ import BookingForm from '../../components/BookingForm/BookingForm';
 
 const CarDetailsPage = () => {
   const [car, setCar] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const { id } = useParams();

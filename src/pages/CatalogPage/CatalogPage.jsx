@@ -7,7 +7,7 @@ import CarFilterForm from '../../components/CarFilterForm/CarFilterForm';
 
 const CatalogPage = () => {
   const [cars, setCars] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [limit] = useState(8);
@@ -20,8 +20,6 @@ const CatalogPage = () => {
     setCars(newFilter.cars);
     setTotalPages(newFilter.totalPages);
     setPage(newFilter.page);
-    
-    console.log('NEW FILTER', newFilter.cars);
   };
 
   useEffect(() => {
@@ -37,7 +35,6 @@ const CatalogPage = () => {
           { params }
         );
         const newCars = response.data.cars;
-        console.log('First response', response.data.cars);
 
         if (page === 1) {
           setCars(newCars);
@@ -65,6 +62,7 @@ const CatalogPage = () => {
   }, [page, limit]);
 
   const loadMoreCars = () => {
+    setLoading(true);
     if (page < totalPages) {
       setPage(prevPage => prevPage + 1);
     }

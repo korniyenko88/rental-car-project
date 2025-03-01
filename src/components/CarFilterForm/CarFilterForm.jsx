@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FilterValidationSchema } from '../../utils/validation';
 import { FilterInitialValues } from '../../utils/validation';
 import styles from './CarFilterForm.module.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
@@ -11,18 +11,17 @@ import Loader from '../Loader/Loader';
 const CarFilterForm = ({ onFilter }) => {
   const [brands, setBrands] = useState([]);
   const [prices, setPrices] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values, { resetForm }) => {
     setLoading(true);
-    console.log('Form values:', values);
     try {
       const filteredValues = Object.fromEntries(
         Object.entries(values).filter(
           ([_, value]) => value !== '' && value !== null
         )
       );
-      console.log('Фільтруємо дані перед запитом:', filteredValues);
+
       if (Object.keys(filteredValues).length === 0) {
         toast.warning('All fields are empty! The request will not be sent!');
         return;
@@ -41,23 +40,18 @@ const CarFilterForm = ({ onFilter }) => {
         }),
       };
 
-      console.log('Фільтруємо дані перед запитом:', params);
-
       const response = await axios.get(
         `https://car-rental-api.goit.global/cars`,
         { params }
       );
       if (response.data.cars.length === 0) {
-        toast.error("Cars not found!")
+        toast.error('Cars not found!');
       } else {
-      onFilter(response.data);
-      resetForm();}
-      console.log('Отримані авто:', response.data);
-    
+        onFilter(response.data);
+        resetForm();
+      }
     } catch (error) {
-      console.error('Error fetching vehicles:', error);
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -69,7 +63,6 @@ const CarFilterForm = ({ onFilter }) => {
       );
       setBrands(response.data);
     } catch (error) {
-      console.error('Error fetching brands:', error);
     } finally {
       setLoading(false);
     }
@@ -89,7 +82,7 @@ const CarFilterForm = ({ onFilter }) => {
   }
 
   return (
-      <Formik
+    <Formik
       initialValues={FilterInitialValues}
       validationSchema={FilterValidationSchema}
       onSubmit={handleSubmit}
