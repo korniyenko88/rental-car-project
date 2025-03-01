@@ -7,11 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import Loader from '../Loader/Loader';
+import sprite from '../../image/sprite.svg';
 
 const CarFilterForm = ({ onFilter }) => {
   const [brands, setBrands] = useState([]);
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isOpenBrand, setIsOpenBrand] = useState(false);
+  const [isOpenPrice, setIsOpenPrice] = useState(false);
 
   const handleSubmit = async (values, { resetForm }) => {
     setLoading(true);
@@ -91,17 +94,32 @@ const CarFilterForm = ({ onFilter }) => {
         <Form className={styles.formContainer}>
           <div className={styles.formGroup}>
             <label htmlFor="brand">Car Brand</label>
-            <Field
-              className={styles.formSelect}
-              as="select"
-              name="brand"
-              placeholder="Choose a brand"
+            <div
+              className={styles.selectWrapper}
+              onClick={() => setIsOpenBrand(!isOpenBrand)}
             >
-              <option value="" label="Choose a brand" />
-              {brands.map(brand => (
-                <option key={brand} value={brand} label={brand} />
-              ))}
-            </Field>
+              <Field
+                className={styles.formSelect}
+                as="select"
+                name="brand"
+                placeholder="Choose a brand"
+                onBlur={() => setIsOpenBrand(false)}
+              >
+                <option value="" label="Choose a brand" />
+                {brands.map(brand => (
+                  <option key={brand} value={brand} label={brand} />
+                ))}
+              </Field>
+              <div className={styles.icon}>
+                <svg aria-hidden="true">
+                  <use
+                    href={`${sprite}#${
+                      isOpenBrand ? 'icon-arow-up' : 'icon-arow-doun'
+                    }`}
+                  />
+                </svg>
+              </div>
+            </div>
             <ErrorMessage
               name="brand"
               component="div"
@@ -111,12 +129,31 @@ const CarFilterForm = ({ onFilter }) => {
 
           <div className={styles.formGroup}>
             <label htmlFor="price">Price/ 1 hour</label>
-            <Field className={styles.formSelect} as="select" name="rentalPrice">
-              <option value="" label="Choose a price" />
-              {prices.map(price => (
-                <option key={price} value={price} label={`$${price}`} />
-              ))}
-            </Field>
+            <div
+              className={styles.selectWrapper}
+              onClick={() => setIsOpenPrice(!isOpenPrice)}
+            >
+              <Field
+                className={styles.formSelect}
+                as="select"
+                name="rentalPrice"
+                onBlur={() => setIsOpenPrice(false)}
+              >
+                <option value="" label="Choose a price" />
+                {prices.map(price => (
+                  <option key={price} value={price} label={`$${price}`} />
+                ))}
+              </Field>
+              <div className={styles.icon}>
+                <svg aria-hidden="true">
+                  <use
+                    href={`${sprite}#${
+                      isOpenPrice ? 'icon-arow-up' : 'icon-arow-doun'
+                    }`}
+                  />
+                </svg>
+              </div>
+            </div>
             <ErrorMessage
               name="rentalPrice"
               component="div"
@@ -130,14 +167,20 @@ const CarFilterForm = ({ onFilter }) => {
               <Field
                 className={styles.formInput}
                 name="minMileage"
-                type="number"
+                type="text"
                 placeholder="From"
+                onInput={e => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                }}
               />
               <Field
                 className={styles.formInputSecond}
                 name="maxMileage"
-                type="number"
+                type="text"
                 placeholder="To"
+                onInput={e => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                }}
               />
             </div>
             <ErrorMessage
@@ -152,7 +195,6 @@ const CarFilterForm = ({ onFilter }) => {
             />
           </div>
           <div className={styles.positionBtn}>
-            {' '}
             <button className={styles.filterBtn} type="submit">
               Search
             </button>

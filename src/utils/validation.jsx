@@ -17,12 +17,12 @@ export const validationSchema = Yup.object({
 
  export const FilterValidationSchema = Yup.object({
    brand: Yup.string(),
-   price: Yup.string(),
-   mileageFrom: Yup.number().optional().min(0, 'Must be at least 0'),
-   mileageTo: Yup.number()
+   rentalPrice: Yup.string(),
+   minMileage: Yup.number().optional().min(0, 'Must be at least 0'),
+   maxMileage: Yup.number()
      .optional()
      .min(
-       Yup.ref('mileageFrom'),
+       Yup.ref('minMileage'),
        'Must be greater than or equal to From mileage'
      ),
  });
