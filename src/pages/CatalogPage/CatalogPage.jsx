@@ -4,6 +4,7 @@ import Loader from '../../components/Loader/Loader';
 import styles from './CatalogPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import CarFilterForm from '../../components/CarFilterForm/CarFilterForm';
+import sprite from '../../image/sprite.svg';
 
 const CatalogPage = () => {
   const [cars, setCars] = useState([]);
@@ -12,11 +13,11 @@ const CatalogPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
-  
+  const [favoriteCar, setFavoriteCar] = useState([]);
 
   const navigate = useNavigate();
 
-  const hendeleFilter = newFilter => {
+  const handleFilter = newFilter => {
     setCars(newFilter.cars);
     setTotalPages(newFilter.totalPages);
     setPage(newFilter.page);
@@ -61,12 +62,28 @@ const CatalogPage = () => {
     fetchCars();
   }, [page, limit]);
 
+  useEffect(() => {
+    const storedFavorites =
+      JSON.parse(localStorage.getItem('favoriteCars')) || [];
+    setFavoriteCar(storedFavorites);
+  }, []);
+
   const loadMoreCars = () => {
-    setLoading(true);
     if (page < totalPages) {
       setPage(prevPage => prevPage + 1);
     }
   };
+
+    const toggleFavorite = cardId => {
+      setFavoriteCar(prevState => {
+        const newFavorites = prevState.includes(cardId)
+          ? prevState.filter(id => id !== cardId)
+          : [...prevState, cardId];
+
+        localStorage.setItem('favoriteCars', JSON.stringify(newFavorites));
+        return newFavorites;
+      });
+    };
 
   if (loading) {
     return (
@@ -87,21 +104,37 @@ const CatalogPage = () => {
   return (
     <div className={styles.catalogContainer}>
       <div>
-        <CarFilterForm onFilter={hendeleFilter} />
+        <CarFilterForm onFilter={handleFilter} />
       </div>
       <div className={styles.carList}>
         {cars.map(car => (
           <div key={car.id} className={styles.carItem}>
-            <img
-              className={styles.carItemImg}
-              src={car.img}
-              alt={`${car.brand} ${car.model}`}
-            />
+            <div className={styles.position}>
+              <img
+                className={styles.carItemImg}
+                src={car.img}
+                alt={`${car.brand} ${car.model}`}
+              />
+
+              <svg
+                className={styles.iconSvg}
+                onClick={() => toggleFavorite(car.id)}
+                aria-hidden="true"
+              >
+                <use
+                  href={`${
+                    favoriteCar.includes(car.id)
+                      ? `${sprite}#icon-hart-active`
+                      : `${sprite}#icon-hart`
+                  }`}
+                />
+              </svg>
+            </div>
 
             <h2 className={styles.cartTitle}>
               <div>
                 {car.brand}{' '}
-                <span className={styles.moderlName}>{car.model}</span>,
+                <span className={styles.modelName}>{car.model}</span>,{' '}
                 {car.year}
               </div>
               <span className={styles.carPrice}>${car.rentalPrice}</span>

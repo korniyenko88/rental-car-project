@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  
-  
 }
 .loaderPosition {
   display: flex;
@@ -30,6 +28,7 @@
 }
 
 .carItemImg {
+  position: relative;
   border-radius: 14px;
   width: 276px;
   height: 268px;
@@ -116,4 +115,15 @@
 
 .loadMoreBtn:hover {
   border: 1px solid #0b44cd;
+}
+.position {
+  position: relative;
+}
+.iconSvg {
+  top: 16px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  cursor: pointer;
 }
