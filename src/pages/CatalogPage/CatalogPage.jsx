@@ -12,14 +12,15 @@ const CatalogPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
-  const [filter, setFilter] = useState({});
+  
 
   const navigate = useNavigate();
 
   const hendeleFilter = newFilter => {
     setCars(newFilter.cars);
     setTotalPages(newFilter.totalPages);
-    setPage(1);
+    setPage(newFilter.page);
+    
     console.log('NEW FILTER', newFilter.cars);
   };
 
@@ -30,7 +31,6 @@ const CatalogPage = () => {
         const params = {
           page,
           limit,
-          ...filter,
         };
         const response = await axios.get(
           `https://car-rental-api.goit.global/cars`,
@@ -62,7 +62,7 @@ const CatalogPage = () => {
     };
 
     fetchCars();
-  }, [page, limit, filter]);
+  }, [page, limit]);
 
   const loadMoreCars = () => {
     if (page < totalPages) {
