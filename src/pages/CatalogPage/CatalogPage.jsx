@@ -106,9 +106,9 @@ const CatalogPage = () => {
       <div>
         <CarFilterForm onFilter={handleFilter} />
       </div>
-      <div className={styles.carList}>
+      <ul className={styles.carList}>
         {cars.map(car => (
-          <div key={car.id} className={styles.carItem}>
+          <li key={car.id} className={styles.carItem}>
             <div className={styles.position}>
               <img
                 className={styles.carItemImg}
@@ -189,9 +189,9 @@ const CatalogPage = () => {
             >
               Read more
             </button>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       {page < totalPages && (
         <button className={styles.loadMoreBtn} onClick={loadMoreCars}>
           Load More
