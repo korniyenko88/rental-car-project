@@ -36,6 +36,7 @@ const CatalogPage = () => {
           { params }
         );
         const newCars = response.data.cars;
+        console.log('First response', response.data);
 
         if (page === 1) {
           setCars(newCars);
