@@ -5,6 +5,8 @@ import styles from './CatalogPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import CarFilterForm from '../../components/CarFilterForm/CarFilterForm';
 import sprite from '../../image/sprite.svg';
+import { useCallback } from 'react';
+import { fetchCars } from '../../components/Api/Api';
 
 const CatalogPage = () => {
   const [cars, setCars] = useState([]);
@@ -23,45 +25,74 @@ const CatalogPage = () => {
     setPage(newFilter.page);
   };
 
+  // useEffect(() => {
+  //   const fetchCars = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const params = {
+  //         page,
+  //         limit,
+  //       };
+  //       const response = await axios.get(
+  //         `https://car-rental-api.goit.global/cars`,
+  //         { params }
+  //       );
+  //       const newCars = response.data.cars;
+  //       console.log('First response', response.data);
+
+  //       if (page === 1) {
+  //         setCars(newCars);
+  //       } else {
+  //         const uniqueCars = [
+  //           ...new Map(
+  //             [...cars, ...newCars].map(car => [car.id, car])
+  //           ).values(),
+  //         ];
+
+  //         setCars(uniqueCars);
+  //       }
+
+  //       setTotalPages(response.data.totalPages);
+  //     } catch (error) {
+  //       setError(
+  //         error.response ? error.response.data.message : 'Error fetching cars'
+  //       );
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchCars();
+  // }, [page, limit]);
+
+const fetchData = useCallback(async () => {
+  setLoading(true);
+  try {
+    const data = await fetchCars(page, limit);
+    const newCars = data.cars;
+    console.log('First response', data);
+
+    setCars(prevCars => {
+      const uniqueCars = [
+        ...new Map(
+          [...prevCars, ...newCars].map(car => [car.id, car])
+        ).values(),
+      ];
+      return uniqueCars;
+    });
+    setTotalPages(data.totalPages);
+  } catch (error) {
+    setError(
+      error.response ? error.response.data.message : 'Error fetching cars'
+    );
+  } finally {
+    setLoading(false);
+  }
+}, [page, limit]);
+
   useEffect(() => {
-    const fetchCars = async () => {
-      setLoading(true);
-      try {
-        const params = {
-          page,
-          limit,
-        };
-        const response = await axios.get(
-          `https://car-rental-api.goit.global/cars`,
-          { params }
-        );
-        const newCars = response.data.cars;
-        console.log('First response', response.data);
-
-        if (page === 1) {
-          setCars(newCars);
-        } else {
-          const uniqueCars = [
-            ...new Map(
-              [...cars, ...newCars].map(car => [car.id, car])
-            ).values(),
-          ];
-
-          setCars(uniqueCars);
-        }
-
-        setTotalPages(response.data.totalPages);
-      } catch (error) {
-        setError(
-          error.response ? error.response.data.message : 'Error fetching cars'
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCars();
-  }, [page, limit]);
+    fetchData();
+  }, [fetchData]);
 
   useEffect(() => {
     const storedFavorites =
@@ -75,16 +106,16 @@ const CatalogPage = () => {
     }
   };
 
-    const toggleFavorite = cardId => {
-      setFavoriteCar(prevState => {
-        const newFavorites = prevState.includes(cardId)
-          ? prevState.filter(id => id !== cardId)
-          : [...prevState, cardId];
+  const toggleFavorite = cardId => {
+    setFavoriteCar(prevState => {
+      const newFavorites = prevState.includes(cardId)
+        ? prevState.filter(id => id !== cardId)
+        : [...prevState, cardId];
 
-        localStorage.setItem('favoriteCars', JSON.stringify(newFavorites));
-        return newFavorites;
-      });
-    };
+      localStorage.setItem('favoriteCars', JSON.stringify(newFavorites));
+      return newFavorites;
+    });
+  };
 
   if (loading) {
     return (
