@@ -8,6 +8,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import Loader from '../Loader/Loader';
 import sprite from '../../image/sprite.svg';
+import { fetchBrands } from '../Api/Api';
 
 const CarFilterForm = ({ onFilter }) => {
   const [brands, setBrands] = useState([]);
@@ -59,20 +60,34 @@ const CarFilterForm = ({ onFilter }) => {
     }
   };
 
-  const fetchBrands = async () => {
-    try {
-      const response = await axios.get(
-        `https://car-rental-api.goit.global/brands`
-      );
-      setBrands(response.data);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchBrands = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://car-rental-api.goit.global/brands`
+  //     );
+  //     setBrands(response.data);
+  //   } catch (error) {
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
-    fetchBrands();
+    const getBrands = async () => {
+      setLoading(true);
+      try {
+        const brands = await fetchBrands();
+        setLoading(true);
+        setBrands(brands);
+        console.log('Brands', brands);
+      } catch (error) {
+        error.errorMessage;
+      } finally {
+        setLoading(false);
+      }
+    };
+    getBrands();
+
     const generatedPrices = [];
     for (let price = 30; price <= 100; price += 10) {
       generatedPrices.push(price.toString());

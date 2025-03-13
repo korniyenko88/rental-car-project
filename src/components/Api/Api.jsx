@@ -13,3 +13,14 @@ export const fetchCars = async (page, limit) => {
  
   return response.data;
 };
+
+
+ export const fetchBrands = async () => {
+
+     const response = await axios.get(
+       `${API_BASE_URL}/brands`
+     );
+    
+   return response.data;
+  
+ };
